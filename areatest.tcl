@@ -27,7 +27,7 @@ puts "INFO: There are $stdcellcount STD cells in the given LEF file."
 set verilogfile [open "[lindex $argv 1]" r]
 set ucellcount 0
 gets $verilogfile data
-while {[string match "module*" $data] || [string match "" $data] || [string match "input*" $data] || [string match "output*" $data] || [string match "wire*" $data]} {
+while {[string match "module*" $data] || [string match "" $data] || [string match "input*" $data] || [string match "output*" $data] || [string match "wire*" $data] || [string match "parameter*" $data]} {
   gets $verilogfile data
 }
 
@@ -50,14 +50,32 @@ puts "INFO: There were $ucellcount cells used in the layout."
 # in the dictionay and gets it's height and width
 # then calcuates the area as sigma(height* width)
 ##############
-set area 0.00
+set areanet 0.00
 for { set a 0}  {$a < $ucellcount} {incr a} {
       set temp $cellsused($a)
       set width $stdcells($temp,0)
       set height $stdcells($temp,1)
-      set area [expr $area + $height*$width  ]
+      set areanet [expr $areanet + $height*$width  ]
 }
 #foreach index [array names cellsused] {
 #   puts $cellsused($index)
 #}
-puts "INFO: The area of all cells used in the layout is: $area"
+puts "INFO: The area of all cells used in the layout is: $areanet"
+
+###############
+# Calculate the height and width of the core using the 
+# utilisation factor given by user
+###############
+
+set ufactor [lindex $argv 2]
+set aratio [lindex $argv 3]
+###############
+# Calculating the area of the netlist
+###############
+set areacore [expr $areanet/$ufactor]
+set heightcore [expr $aratio*$areacore]
+set heightcore [expr { sqrt($heightcore) }]
+set widthcore [expr $areacore/$heightcore]
+puts "INFO: The height of the core should be: $heightcore"
+puts "INFO: The width of the core should be: $widthcore"
+puts "INFO: The area of the core is: [expr $heightcore*$widthcore] or $areacore"
