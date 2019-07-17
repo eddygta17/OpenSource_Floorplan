@@ -4,7 +4,7 @@
 ##############
 set file_no 0
 set overallcellcount 0
-set areafile [open "lib_area.vlsisd" w]
+set areafile [open "cell_area.vlsisd" w]
 while {![expr $file_no==$argc]} {
   set libfile [open "[lindex $argv $file_no]" r]
   set stdcellcount 0
@@ -37,8 +37,5 @@ while {![expr $file_no==$argc]} {
   incr file_no
   close $libfile
 }
-
-
-
 close $areafile
 puts "INFO: There are $overallcellcount STD cells in all."

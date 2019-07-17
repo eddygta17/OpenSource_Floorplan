@@ -1,63 +1,31 @@
 ###############
-# Opens the LEF file and then creates a dictionary
-# of the STD cell's height and width
-##############
-set leffile [open "[lindex $argv 0]" r]
-set stdcellcount 0
-set stdcellname "NONE"
-while { [gets $leffile data] >= 0 } {
-    if {[string match "MACRO *" $data]} {
-    set stdcellname [string map {"MACRO " ""} $data]
-    while {![string match "* SIZE *" $data]} {
-      gets $leffile data
-    }
-    set temp [split "$data"]
-    set stdcells($stdcellname,0) [lindex $temp 3]
-    set stdcells($stdcellname,1) [lindex $temp 5]
-    incr stdcellcount
-    }
-
-}
-close $leffile
-puts "INFO: There are $stdcellcount STD cells in the given LEF file."
-###############
-# Opens the Verilog file and skips the firt few lines then
+# Opens the Verilog file and skips the first few lines then
 # creates an array of cells used and notes the cell count
 ##############
-set verilogfile [open "[lindex $argv 1]" r]
+set verilogfile [open "[lindex $argv 0]" r]
+set cellfile [open "cell_used.vlsisd" w]
 set ucellcount 0
 gets $verilogfile data
-while {[string match "module*" $data] || [string match "" $data] || [string match "input*" $data] || [string match "output*" $data] || [string match "wire*" $data]} {
-  gets $verilogfile data
-}
-
-while { ![string match "endmodule*" $data] } {
-    while {[string match "" $data]} {
-      gets $verilogfile data
-    }
-    if {[regexp {([A-Z]+)([?]*)} $data a]} {
+ while {[string match "module*" $data] ||
+        [string match "endmodule*" $data] ||
+        [string match "input*" $data] ||
+        [string match "output*" $data] ||
+        [string match "wire*" $data] ||
+        [string match "parameter*" $data] ||
+        [string match "" $data] ||
+        [string match "reg*" $data] } {
+          gets $verilogfile data
+        }
+while { ![eof $verilogfile] } {
+    #puts $data
+    if {[regexp { \(} $data temp]} {
+     #puts $data
      set temp [split "$data"]
      set cellsused($ucellcount) [lindex $temp 0]
-     #puts "$cellsused($ucellcount)"
-     gets $verilogfile data
+     puts $cellfile "$cellsused($ucellcount)"
      incr ucellcount
    }
+   gets $verilogfile data
 }
 close $verilogfile
 puts "INFO: There were $ucellcount cells used in the layout."
-###############
-# Checks the used cell against the value stored
-# in the dictionay and gets it's height and width
-# then calcuates the area as sigma(height* width)
-##############
-set area 0.00
-for { set a 0}  {$a < $ucellcount} {incr a} {
-      set temp $cellsused($a)
-      set width $stdcells($temp,0)
-      set height $stdcells($temp,1)
-      set area [expr $area + $height*$width  ]
-}
-#foreach index [array names cellsused] {
-#   puts $cellsused($index)
-#}
-puts "INFO: The area of all cells used in the layout is: $area"

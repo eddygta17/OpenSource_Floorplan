@@ -1,2 +1,8 @@
 binary_counter.rtlnopwr.v
 osu018_stdcells.lef
+sampleverilog
+verilogtest.tcl
+binary_counter.rtlnopwr.v.def
+picosoc_fp.def
+picosoc_fp.v
+areatestback.tcl
