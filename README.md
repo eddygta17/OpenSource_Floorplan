@@ -31,3 +31,8 @@ Reads all the given LEF files and generates the file **cell_area.vlsisd** with a
 Reads all the given LIB files and generates the file **cell_area.vlsisd** with all the STD cell names and their area.
 
 `./read_lib.tcl <list_of_all_lib_files_seperated_by_space>`
+
+###### read_verilog
+Reads the given verilog file and generates the file **cell_used.vlsisd** with the names of the cells used in the design.
+
+`./read_verilog.tcl <verilog_file>`
