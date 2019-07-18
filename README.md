@@ -7,7 +7,9 @@ Clone the code to your machine and then change the current directory to **OpenSo
 2. `cd OpenSource_Floorplan`
 3. `chmod 777 read_lef.tcl`
 4. `chmod 777 read_lib.tcl`
+5. `chmod 777 read_verilog.tcl`
 5. `chmod 777 areatest.tcl` 
+ 
 
 ### Prerequisites
 Most Unix / Linux operating system distributions, as well as Mac OS X, include Tcl/Tk.
