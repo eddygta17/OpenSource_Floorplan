@@ -6,3 +6,6 @@ binary_counter.rtlnopwr.v.def
 picosoc_fp.def
 picosoc_fp.v
 areatestback.tcl
+binary_counter.rtlnopwr.def
+cell_area.vlsisd
+test.def

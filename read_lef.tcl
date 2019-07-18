@@ -1,7 +1,8 @@
-###############
+#!/usr/bin/tclsh
+#------------------------------------------------------------
 # Opens the LEF file and then creates a dictionary
 # of the STD cell's height and width into a file
-##############
+#------------------------------------------------------------
 set file_no 0
 set overallcellcount 0
 set areafile [open "cell_area.vlsisd" w]
