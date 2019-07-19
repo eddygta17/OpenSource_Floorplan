@@ -3,6 +3,7 @@
 # Opens the Verilog file and skips the first few lines then
 # creates an array of cells used and notes the cell count
 #------------------------------------------------------------
+
 set verilogfile [open "[lindex $argv 0]" r]
 set cellfile [open "cell_used.vlsisd" w]
 set ucellcount 0
@@ -21,7 +22,7 @@ while { [gets $verilogfile data] >= 0 } {
           gets $verilogfile data
         }
 
-    if {[regexp {([A-Z]+)([?]*)} $data temp]} {
+    if {[regexp { \(} $data temp]} {
      set temp [split "$data"]
      set cellsused($ucellcount) [lindex $temp 0]
      puts $cellfile "$cellsused($ucellcount)"

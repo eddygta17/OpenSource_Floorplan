@@ -3,6 +3,7 @@
 # Opens the LIB file and then creates a dictionary
 # of the STD cell's area into a file
 #------------------------------------------------------------
+
 set file_no 0
 set overallcellcount 0
 set areafile [open "cell_area.vlsisd" w]

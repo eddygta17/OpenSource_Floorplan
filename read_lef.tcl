@@ -3,6 +3,7 @@
 # Opens the LEF file and then creates a dictionary
 # of the STD cell's height and width into a file
 #------------------------------------------------------------
+
 set file_no 0
 set overallcellcount 0
 set areafile [open "cell_area.vlsisd" w]
@@ -21,11 +22,16 @@ while {![expr $file_no==$argc]} {
         gets $leffile data
       }
       
-      set temp [split "$data"]
-      set stdcells($stdcellname,0) [lindex $temp 3]
-      set stdcells($stdcellname,1) [lindex $temp 5]
-      set area [expr $stdcells($stdcellname,0)*$stdcells($stdcellname,1)]
-      puts $areafile "$stdcellname $area $stdcells($stdcellname,0) $stdcells($stdcellname,1)"
+      if {[regexp {([0-9]+\.[0-9]+ BY)} $data width]} {
+        set width [string map {" BY" ""} $width]
+      }
+
+      if {[regexp {(BY [0-9]+\.[0-9]+)} $data height]} {
+        set height [string map {"BY " ""} $height]
+      }
+   
+      set area [expr $width*$height]
+      puts $areafile "$stdcellname $area"
       incr stdcellcount
       incr overallcellcount
       }
