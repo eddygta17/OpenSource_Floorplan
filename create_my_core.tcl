@@ -5,6 +5,7 @@
 #------------------------------------------------------------
 
 set cell_used_file [open "cell_used.vlsisd" r]
+gets $cell_used_file data
 set cell_area_file [open "cell_area.vlsisd" r]
 set core_area_file [open "core_area.vlsisd" w]
 set areanet 0.00
@@ -27,6 +28,8 @@ for { set index 0}  {$index < $ucellcount} {incr index} {
 }
 
 puts "INFO: The area of the given net is: $areanet"
+close $cell_area_file
+close $cell_used_file
 
 set ufactor [lindex $argv 0]
 set aratio [lindex $argv 1]
@@ -41,4 +44,5 @@ puts "INFO: The area of the core is: $areacore"
 
 puts $core_area_file "$widthcore"
 puts $core_area_file "$heightcore"
+close $core_area_file
 

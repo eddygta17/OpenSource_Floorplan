@@ -10,6 +10,7 @@ picorv32.lef
 picosoc_fp.def
 picosoc_fp.v
 picosoc_mem.lef
-vlog2Def
-verilogtodef/
 create_my_chip.tcl
+foo.def
+lef/
+rtl/

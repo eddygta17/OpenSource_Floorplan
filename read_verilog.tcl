@@ -6,6 +6,7 @@
 
 set verilogfile [open "[lindex $argv 0]" r]
 set cellfile [open "cell_used.vlsisd" w]
+puts $cellfile [lindex $argv 0]
 set ucellcount 0
 
 while { [gets $verilogfile data] >= 0 } {
