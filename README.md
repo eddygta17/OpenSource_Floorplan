@@ -10,16 +10,21 @@ Clone the code to your machine and then change the current directory to **OpenSo
 5. `chmod 777 read_verilog.tcl`
 6. `chmod 777 create_my_core.tcl`
 7. `chmod 777 create_my_die.tcl`
-8. `chmod 777 magic.sh`
+8. `chmod 777 magic_create.sh`
+8. `chmod 777 magic_open.sh`
 
 
 
 ### Prerequisites
-Most Unix / Linux operating system distributions, as well as Mac OS X, include Tcl/Tk.
+Most Unix / Linux operating system distributions, as well as Mac OS X, include Tcl/Tk.Magic a venerable VLSI layout tool, written by John Ousterhout is also required.
+
 If not already installed, you can use your system's package manager to install the appropriate packages.
 For example, on a Debian system, you can type
 
 `sudo apt-get install tcl`
+
+`sudo apt-get install magic`
+
 
 ### Usage
 
