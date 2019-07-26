@@ -1,16 +1,1 @@
-areatest.tcl
-areatestback.tcl
-binary_counter.rtlnopwr.v
-areatest.tcl
-cell_area.vlsisd
-core_area.vlsisd
-cell_used.vlsisd
-osu018_stdcells.lef
-picorv32.lef
-picosoc_fp.def
-picosoc_fp.v
-picosoc_mem.lef
-create_my_chip.tcl
-foo.def
-lef/
-rtl/
+test/
