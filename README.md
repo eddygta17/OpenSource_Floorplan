@@ -5,13 +5,8 @@
 Clone the code to your machine and then change the current directory to **OpenSource_Floorplan**,by executing these commands in a terminal.
 1. `git clone https://github.com/eddygta17/OpenSource_Floorplan.git`
 2. `cd OpenSource_Floorplan`
-3. `chmod 777 read_lef.tcl`
-4. `chmod 777 read_lib.tcl`
-5. `chmod 777 read_verilog.tcl`
-6. `chmod 777 create_my_core.tcl`
-7. `chmod 777 create_my_die.tcl`
-8. `chmod 777 magic_create.sh`
-8. `chmod 777 magic_open.sh`
+3. `chmod 777 permissions.sh`
+4. `./permissions.sh`
 
 
 
