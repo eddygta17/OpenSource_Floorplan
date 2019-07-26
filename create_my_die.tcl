@@ -19,11 +19,11 @@ set def_out [lindex $argv 4]
 eval exec ./vlog2Def -o $def_out $verilogfile
 set def_file [open "$def_out" r]
 set def_lines [split [read $def_file] "\n"]
-set def_file [open "Die$def_out" w]
+set def_file [open "$def_out" w]
 
 
-set heightdie [expr $heightcore+[lindex $argv 0]+[lindex $argv 1]]
-set widthdie  [expr $widthcore+[lindex $argv 2]+[lindex $argv 3]]
+set heightdie [expr int($heightcore+[lindex $argv 0]+[lindex $argv 1])]
+set widthdie  [expr int($widthcore+[lindex $argv 2]+[lindex $argv 3])]
 set areadie [expr $heightdie*$widthdie]
 
 puts "INFO: The height of the die should be: $heightdie"
@@ -43,4 +43,4 @@ foreach line $def_lines {
 }
 close $def_file
 
-eval exec ./magic.sh $def_out
+eval exec ./magic_create.sh $def_out
