@@ -23,7 +23,7 @@ For example, on a Debian system, you can type
 
 ### Usage
 
-###### read_lef
+##### read_lef
 Reads all the given LEF files and generates the file **cell_area.vlsisd** with all the STD cell names, their area, width and height.
 
 `./read_lef.tcl <list_of_all_lef_files_seperated_by_space>`
