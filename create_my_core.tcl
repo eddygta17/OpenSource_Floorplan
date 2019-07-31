@@ -16,6 +16,13 @@ while { [gets $cell_used_file data] >= 0 } {
     incr ucellcount
 }
 
+set skip [gets $cell_area_file data]
+set temp 0
+while { $temp < $skip } {
+    gets $cell_area_file data
+    incr temp
+}
+
 while { [gets $cell_area_file data] >= 0 } {
     set data [split "$data"]
     set stdcells([lindex $data 0]) [lindex $data 1]
