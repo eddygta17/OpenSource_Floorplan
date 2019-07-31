@@ -7,6 +7,16 @@
 set file_no 0
 set overallcellcount 0
 set areafile [open "cell_area.vlsisd" w]
+puts $areafile $argc
+
+while {![expr $file_no==$argc]} {
+  
+  set leffile "[lindex $argv $file_no]"  
+  puts $areafile $leffile
+  incr file_no
+  
+}
+set file_no 0
 
 while {![expr $file_no==$argc]} {
 
