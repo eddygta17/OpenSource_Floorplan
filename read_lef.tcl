@@ -9,19 +9,19 @@ set overallcellcount 0
 set areafile [open "cell_area.vlsisd" w]
 
 while {![expr $file_no==$argc]} {
-  
+
   set leffile [open "[lindex $argv $file_no]" r]
   set stdcellcount 0
-  
+
   while { [gets $leffile data] >= 0 } {
-      
+
       if {[string match "MACRO *" $data]} {
       set stdcellname [string map {"MACRO " ""} $data]
-      
+
       while {![string match "* SIZE *" $data]} {
         gets $leffile data
       }
-      
+
       if {[regexp {([0-9]+\.[0-9]+ BY)} $data width]} {
         set width [string map {" BY" ""} $width]
       }
@@ -29,9 +29,9 @@ while {![expr $file_no==$argc]} {
       if {[regexp {(BY [0-9]+\.[0-9]+)} $data height]} {
         set height [string map {"BY " ""} $height]
       }
-   
+
       set area [expr $width*$height]
-      puts $areafile "$stdcellname $area"
+      puts $areafile "$stdcellname $area $width $height"
       incr stdcellcount
       incr overallcellcount
       }
